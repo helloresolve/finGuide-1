@@ -34,7 +34,7 @@ app.post('/api/pushToDB', (req, res)=> {
     console.log("trying to push to DB...", req.body)
 
     User.create({motionAiResponse: req.body}, function (err, response) {
-        if (err) return handleError(err);
+        if (err) console.log(err);
         console.log("response", response)
     })
     res.send("Saved ish");
