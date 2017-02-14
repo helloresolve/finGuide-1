@@ -26,7 +26,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-app.use('/', express.static('public'))
+app.use('/', express.static(path.join(__dirname, '/public')));
+
 
 
 app.get('/api/pushToDB', (req, res)=> {
