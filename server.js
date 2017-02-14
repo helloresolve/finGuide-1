@@ -32,7 +32,7 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.post('/api/pushToDB', (req, res)=> {
   console.log("trying to add to db...");
 
-  console.log("request looks like", request.body);
+  console.log("request looks like", req.body);
 
 // name response
     
