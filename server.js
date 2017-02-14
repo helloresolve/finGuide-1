@@ -13,9 +13,9 @@ mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_
 
 // define user schema
 var userSchema = mongoose.Schema({
-  session: String,
-  moduleId: Number,
-  reply: String
+  sessionId: String,
+  name: String,
+  email: String
 });
 
 User = mongoose.model('user', userSchema);
