@@ -42,21 +42,17 @@ app.post('/api/pushToDB', (req, res)=> {
           if (err) console.log(err);
         })
     } 
-    if (req.body.moduleId === '393884' ) {
+    if (req.body.moduleId === '393835' ) {
       console.log("name provided", req.body.reply);
       User.update({name: req.body.reply});
     };
 
-    if (req.body.moduleId === '393885' ) {
+    if (req.body.moduleId === '393884' ) {
         console.log("email provided", req.body.reply);
         User.update({email: req.body.reply});
       }
-      
+
     } // close db entry
-    
-
-
-
 
   res.send("Saved ish");
 
