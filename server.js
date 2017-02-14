@@ -1,7 +1,7 @@
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3000;
 var app = express();
 
 var morgan = require('morgan');
@@ -40,4 +40,4 @@ app.get('/api/pushToDB', (req, res)=> {
 })
 // start server
 app.listen(3000);
-console.log('Listening on port ' + 3000 + '...');
+console.log('Listening on port ' + PORT + '...');
