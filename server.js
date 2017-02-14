@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 app.use(morgan('dev'));
 
 
-//mongoose.connect('replace');
+mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_326pqxss');
 
 
 // define user schema
@@ -27,6 +27,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.get('/api/pushToDB', (req, res)=> {
+    console.log("trying to push to DB...")
+
+    User.create({motionAiResponse: "Hello"}, function (err, response) {
+        if (err) return handleError(err);
+        console.log("response", response)
+    })
+    res.send("Saved ish");
+})
 
 // start server
 app.listen(3000);
