@@ -29,24 +29,34 @@ app.use(bodyParser.urlencoded({
 
 app.use('/', express.static(path.join(__dirname, '/public')));
 
-
 app.post('/api/pushToDB', (req, res)=> {
   console.log("trying to add to db...");
 
-  User.findOne({sessionId: req.body.session}, function(err, user) {;
+// name response
+    
+  User.findOne({sessionId: req.body.session}, function(err, user) {
     console.log("user", user);
     if (!user) {
-        console.log("not found, creating new entry")
-        User.create({sessionId: req.body.session, name: req.body.reply}, function (err, response) {
+        console.log("not found, creating new session")
+        User.create({sessionId: req.body.session}, function (err, response) {
           if (err) console.log(err);
         })
-    } else {   
-      console.log("existing user, adding email")
-      User.update({email: req.body.reply}, function (err, response) {
-          if (err) console.log(err);
-        })
-    }
-  });
+    } 
+    if (req.body.moduleId === '393884' ) {
+      console.log("name provided", req.body.reply);
+      User.update({name: req.body.reply});
+    };
+
+    if (req.body.moduleId === '393885' ) {
+        console.log("email provided", req.body.reply);
+        User.update({email: req.body.reply});
+      }
+      
+    } // close db entry
+    
+
+
+
 
   res.send("Saved ish");
 
