@@ -42,7 +42,7 @@ app.post('/api/pushToDB', (req, res)=> {
         })
     } else {   
       console.log("existing user, adding email")
-      User.update({email: req.body.email}, function (err, response) {
+      User.update({email: req.body.reply}, function (err, response) {
           if (err) console.log(err);
         })
     }
