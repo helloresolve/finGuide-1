@@ -32,6 +32,8 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.post('/api/pushToDB', (req, res)=> {
   console.log("trying to add to db...");
 
+  console.log("request looks like", request.body);
+
 // name response
     
   User.findOne({sessionId: req.body.session}, function(err, user) {
@@ -44,12 +46,16 @@ app.post('/api/pushToDB', (req, res)=> {
     } 
     if (req.body.moduleID === '393835' ) {
       console.log("name provided", req.body.reply);
-      User.update({name: req.body.reply});
+      User.update({name: req.body.reply}, function(err,result){
+        console.log("done updating name");
+      });
     };
 
     if (req.body.moduleID === '393884' ) {
         console.log("email provided", req.body.reply);
-        User.update({email: req.body.reply});
+        User.update({email: req.body.reply}, function(err,result){
+          console.log("done updating email");
+        });
       }
 
     }); // close db entry
