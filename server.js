@@ -33,13 +33,11 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.post('/api/pushToDB', (req, res)=> {
   console.log("trying to add to db...");
 
-  let sessionId = req.body.session;
-  User.findOne({sessionId: req.body.session}, function(err, user) {
-    console.log("error", err);
+  User.findOne({sessionId: req.body.session}, function(err, user) {;
     console.log("user", user);
     if (!user) {
         console.log("not found, creating new entry")
-        User.create({sessionId: session, name: req.body.reply}, function (err, response) {
+        User.create({sessionId: req.body.session, name: req.body.reply}, function (err, response) {
           if (err) console.log(err);
         })
     } else {   
