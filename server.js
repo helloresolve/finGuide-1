@@ -40,5 +40,5 @@ app.get('/api/pushToDB', (req, res)=> {
     res.send("Saved ish");
 })
 // start server
-app.listen(3000);
+app.listen(port);
 console.log('Listening on port ' + port + '...');
