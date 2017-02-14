@@ -14,7 +14,9 @@ mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_
 
 // define user schema
 var userSchema = mongoose.Schema({
-  motionAiResponse: String
+  session: String,
+  moduleId: Number,
+  reply: String
 });
 
 User = mongoose.model('user', userSchema);
@@ -31,9 +33,11 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 
 
 app.post('/api/pushToDB', (req, res)=> {
-    console.log("trying to push to DB...", req.body)
+   let session = req.body.session;
+   let moduleId = req.body.moduleID;
+   let reply = req.body.reply;
 
-    User.create({motionAiResponse: req.body}, function (err, response) {
+    User.create({session: session, moduleId: moduleId, reply: reply}, function (err, response) {
         if (err) console.log(err);
         console.log("response", response)
     })
