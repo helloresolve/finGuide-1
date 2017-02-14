@@ -33,7 +33,7 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.get('/api/pushToDB', (req, res)=> {
     console.log("trying to push to DB...")
 
-    User.create({motionAiResponse: "Hello"}, function (err, response) {
+    User.create({motionAiResponse: req.body}, function (err, response) {
         if (err) return handleError(err);
         console.log("response", response)
     })
