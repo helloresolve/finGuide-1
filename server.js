@@ -52,7 +52,7 @@ app.post('/api/pushToDB', (req, res)=> {
         User.update({email: req.body.reply});
       }
 
-    } // close db entry
+    }); // close db entry
 
   res.send("Saved ish");
 
