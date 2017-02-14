@@ -15,7 +15,16 @@ mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_
 var userSchema = mongoose.Schema({
   sessionId: String,
   name: String,
-  email: String
+  email: String,
+  knowWhereToStart: String,
+  totalDebt: String,
+  averageInterestRate: String,
+  monthlyDebtPayments: String,
+  incomeYN: String,
+  incomeAmount: String,
+  incomeConsitency: String,
+  situationDetail: String
+
 });
 
 User = mongoose.model('user', userSchema);
