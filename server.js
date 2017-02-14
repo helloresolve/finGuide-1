@@ -37,7 +37,7 @@ app.post('/api/pushToDB', (req, res)=> {
   User.findOne({sessionId: req.body.session}, function(err, user) {
     console.log("error", err);
     console.log("user", user);
-    if (err) {
+    if (!user) {
         console.log("not found, creating new entry")
         User.create({sessionId: session, name: req.body.reply}, function (err, response) {
           if (err) console.log(err);
