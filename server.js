@@ -32,31 +32,89 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.post('/api/pushToDB', (req, res)=> {
   console.log("trying to add to db...");
 
-  console.log("request looks like", req.body);
-
-// name response
-    
+  // look up session and create if doesn't exist  
   User.findOne({sessionId: req.body.session}, function(err, user) {
     console.log("user", user);
     if (!user) {
-        console.log("not found, creating new session")
+        console.log("not found, creating new session...")
         User.create({sessionId: req.body.session}, function (err, response) {
           if (err) console.log(err);
         })
     } 
-    if (req.body.moduleID === '393835' ) {
-      console.log("name provided", req.body.reply);
-      User.update({name: req.body.reply}, function(err,result){
-        console.log("done updating name");
+
+    // email
+    if (req.body.moduleID === '394253' ) {
+      console.log("email provided", req.body.reply);
+      User.update({email: req.body.reply}, function(err,result){
+        console.log("done updating...");
       });
     };
 
-    if (req.body.moduleID === '393884' ) {
-        console.log("email provided", req.body.reply);
-        User.update({email: req.body.reply}, function(err,result){
-          console.log("done updating email");
-        });
-      }
+    // know where to start
+    if (req.body.moduleID === '394313' ) {
+      console.log("know where to start provided", req.body.reply);
+      User.update({knowWhereToStart: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // total debt amount
+    if (req.body.moduleID === '394231' ) {
+      console.log("total debt provided", req.body.reply);
+      User.update({totalDebt: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // average interest
+    if (req.body.moduleID === '394235' ) {
+      console.log("average interest provided", req.body.reply);
+      User.update({averageInterestRate: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // monthly debt payments
+    if (req.body.moduleID === '394236' ) {
+      console.log("monthly debt payments", req.body.reply);
+      User.update({monthlyDebtPayments: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // income (y/n)
+    if (req.body.moduleID === '394074' ) {
+      console.log("income (yes or no)", req.body.reply);
+      User.update({incomeYN: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // income amount
+    if (req.body.moduleID === '394076' ) {
+      console.log("income amount", req.body.reply);
+      User.update({incomeAmount: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // income consistency
+    if (req.body.moduleID === '394088' ) {
+      console.log("income consistency", req.body.reply);
+      User.update({incomeConsitency: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // situation detail
+    if (req.body.moduleID === '394179' ) {
+      console.log("explain situation", req.body.reply);
+      User.update({situationDetail: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+
 
     }); // close db entry
 
