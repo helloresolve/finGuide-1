@@ -53,11 +53,11 @@ app.post('/api/pushToDB', (req, res)=> {
   // email provided
   if (req.body.moduleID === '394253' ) {
     User.findOneAndUpdate(sessionId, {email: req.body.reply}, options, function(err, result) {
-      if(!result){
-        User.save({sessionId: req.body.session}, {email: req.body.reply}, function(err, result2) {
-          console.log(result2);
-        })
-      }
+      // if(!result){
+      //   User.save({sessionId: req.body.session}, {email: req.body.reply}, function(err, result2) {
+      //     console.log(result2);
+      //   })
+      // }
     })
   };
 
@@ -65,11 +65,11 @@ app.post('/api/pushToDB', (req, res)=> {
   // know where to start
   if (req.body.moduleID === '394313' ) {
     User.findOneAndUpdate(sessionId, {knowWhereToStart: req.body.reply}, options, function(err, result) {
-      if(!result){
-        User.save({sessionId: req.body.session}, {knowWhereToStart: req.body.reply}, function(err, result2) {
-          console.log(result2);
-        })
-      }
+      // if(!result){
+      //   User.save({sessionId: req.body.session}, {knowWhereToStart: req.body.reply}, function(err, result2) {
+      //     console.log(result2);
+      //   })
+      // }
     })
   };
 
