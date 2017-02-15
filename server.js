@@ -8,6 +8,8 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 app.use(morgan('dev'));
 
+var findOneOrCreate = require('mongoose-find-one-or-create');
+
 mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_326pqxss');
 
 
@@ -24,6 +26,10 @@ var userSchema = mongoose.Schema({
   incomeConsistency: String,
   situationDetail: String,
 });
+
+
+userSchema.plugin(findOneOrCreate);
+
 
 User = mongoose.model('user', userSchema);
 
