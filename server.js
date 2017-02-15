@@ -47,17 +47,18 @@ app.post('/api/pushToDB', (req, res)=> {
     if (!user) {
         console.log("not found, creating new session...")
         User.create({sessionId: req.body.session}, function (err, response) {
-          if (err) console.log(err);
-        })
+
+          // email included since needs to only add first response after session created
+          if (req.body.moduleID === '394253' ) {
+            console.log("email provided", req.body.reply);
+            User.update({email: req.body.reply}, function(err,result){
+              if (err) console.log("error", err);
+              console.log("done updating...", result);
+            });
+          };
+       })
     } 
 
-    // email
-    if (req.body.moduleID === '394253' ) {
-      console.log("email provided", req.body.reply);
-      User.update({email: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
 
     // know where to start
     if (req.body.moduleID === '394313' ) {
