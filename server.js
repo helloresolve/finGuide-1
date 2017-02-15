@@ -43,78 +43,36 @@ app.use(bodyParser.urlencoded({
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.post('/api/pushToDB', (req, res)=> {
+  
+  let sessionId = {sessionId: req.body.session};
+  let options = { upsert: true };
+
+
 
 
   // email provided
   if (req.body.moduleID === '394253' ) {
-    console.log("email provided", req.body.reply);
-    User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, email: req.body.reply}, function(err, result) {
-      console.log(result);
+    User.findOneAndUpdate(sessionId, {email: req.body.reply}, options, function(err, result) {
+      if(!result){
+        User.create({sessionId: req.body.session}, {email: req.body.reply}, function(err, result2) {
+          console.log(result2);
+        })
+      }
     })
   };
 
 
   // know where to start
   if (req.body.moduleID === '394313' ) {
-    console.log("know where to start provided", req.body.reply);
-    User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, knowWhereToStart: req.body.reply}, function(err, result) {
-      console.log(result);
+    User.findOneAndUpdate(sessionId, {knowWhereToStart: req.body.reply}, options, function(err, result) {
+      if(!result){
+        User.create({sessionId: req.body.session}, {knowWhereToStart: req.body.reply}, function(err, result2) {
+          console.log(result2);
+        })
+      }
     })
   };
 
-  // total debt amount
-  if (req.body.moduleID === '394231' ) {
-    console.log("total debt provided", req.body.reply);
-    User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, totalDebt: req.body.reply}, function(err, result) {
-      console.log(result);
-    })
-  };
-
-  // average interest
-  if (req.body.moduleID === '394235' ) {
-    console.log("average interest provided", req.body.reply);
-    User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, averageInterestRate: req.body.reply}, function(err, result) {
-      console.log(result);
-    })
-  };
-
-  // monthly debt payments
-  if (req.body.moduleID === '394236' ) {
-    console.log("monthly debt payments", req.body.reply);
-    User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, monthlyDebtPayments: req.body.reply}, function(err, result) {
-      console.log(result);
-    })
-  };
-
-  // income (y/n)
-  if (req.body.moduleID === '394074' ) {
-    console.log("income (yes or no)", req.body.reply);
-      User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, incomeYN: req.body.reply}, function(err, result) {
-      console.log(result);
-    })
-  };
-
-  // income amount
-  if (req.body.moduleID === '394076' ) {
-    console.log("income amount", req.body.reply);
-    User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, incomeAmount: req.body.reply}, function(err, result) {
-      console.log(result);
-    })
-  };
-
-  // income consistency
-  if (req.body.moduleID === '394088' ) {
-    User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, incomeConsistency: req.body.reply}, function(err, result) {
-      console.log(result);
-    })
-  };
-
-  // situation detail
-  if (req.body.moduleID === '396899' ) {
-    User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, situationDetail: req.body.reply}, function(err, result) {
-      console.log(result);
-    })
-  };
 
   res.send("Saved ish");
 
@@ -123,3 +81,59 @@ app.post('/api/pushToDB', (req, res)=> {
 // start server
 app.listen(port);
 console.log('Listening on port ' + port + '...');
+
+
+
+  // // total debt amount
+  // if (req.body.moduleID === '394231' ) {
+  //   console.log("total debt provided", req.body.reply);
+  //   User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, totalDebt: req.body.reply}, function(err, result) {
+  //     console.log(result);
+  //   })
+  // };
+
+  // // average interest
+  // if (req.body.moduleID === '394235' ) {
+  //   console.log("average interest provided", req.body.reply);
+  //   User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, averageInterestRate: req.body.reply}, function(err, result) {
+  //     console.log(result);
+  //   })
+  // };
+
+  // // monthly debt payments
+  // if (req.body.moduleID === '394236' ) {
+  //   console.log("monthly debt payments", req.body.reply);
+  //   User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, monthlyDebtPayments: req.body.reply}, function(err, result) {
+  //     console.log(result);
+  //   })
+  // };
+
+  // // income (y/n)
+  // if (req.body.moduleID === '394074' ) {
+  //   console.log("income (yes or no)", req.body.reply);
+  //     User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, incomeYN: req.body.reply}, function(err, result) {
+  //     console.log(result);
+  //   })
+  // };
+
+  // // income amount
+  // if (req.body.moduleID === '394076' ) {
+  //   console.log("income amount", req.body.reply);
+  //   User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, incomeAmount: req.body.reply}, function(err, result) {
+  //     console.log(result);
+  //   })
+  // };
+
+  // // income consistency
+  // if (req.body.moduleID === '394088' ) {
+  //   User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, incomeConsistency: req.body.reply}, function(err, result) {
+  //     console.log(result);
+  //   })
+  // };
+
+  // // situation detail
+  // if (req.body.moduleID === '396899' ) {
+  //   User.findOneOrCreate({sessionId: req.body.session}, {sessionId: req.body.session, situationDetail: req.body.reply}, function(err, result) {
+  //     console.log(result);
+  //   })
+  // };
