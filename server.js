@@ -67,49 +67,49 @@ app.post('/api/pushToDB', (req, res)=> {
 
   // total debt amount
   if (req.body.moduleID === '394231' ) {
-    User.findOneAndUpdate({sessionId: req.body.session}, {totalDebt: req.body.reply}, function(err, result) {
+    User.findOneAndUpdate(sessionId, {totalDebt: req.body.reply}, function(err, result) {
       console.log(result);
     })
   };
 
   // average interest
   if (req.body.moduleID === '394235' ) {
-    User.findOneAndUpdate({sessionId: req.body.session}, {averageInterestRate: req.body.reply}, function(err, result) {
+    User.findOneAndUpdate(sessionId, {averageInterestRate: req.body.reply}, function(err, result) {
       console.log(result);
     })
   };
 
   // monthly debt payments
   if (req.body.moduleID === '394236' ) {
-    User.findOneAndUpdate({sessionId: req.body.session}, {monthlyDebtPayments: req.body.reply}, function(err, result) {
+    User.findOneAndUpdate(sessionId, {monthlyDebtPayments: req.body.reply}, function(err, result) {
       console.log(result);
     })
   };
 
   // income (y/n)
   if (req.body.moduleID === '394074' ) {
-      User.findOneAndUpdate({sessionId: req.body.session}, {incomeYN: req.body.reply}, function(err, result) {
+      User.findOneAndUpdate(sessionId, {incomeYN: req.body.reply}, function(err, result) {
       console.log(result);
     })
   };
 
   // income amount
   if (req.body.moduleID === '394076' ) {
-    User.findOneAndUpdate({sessionId: req.body.session}, {incomeAmount: req.body.reply}, function(err, result) {
+    User.findOneAndUpdate(sessionId, {incomeAmount: req.body.reply}, function(err, result) {
       console.log(result);
     })
   };
 
   // income consistency
   if (req.body.moduleID === '394088' ) {
-    User.findOneAndUpdate({sessionId: req.body.session}, {incomeConsistency: req.body.reply}, function(err, result) {
+    User.findOneAndUpdate(sessionId, {incomeConsistency: req.body.reply}, function(err, result) {
       console.log(result);
     })
   };
 
   // situation detail
   if (req.body.moduleID === '396899' ) {
-    User.findOneAndUpdate({sessionId: req.body.session}, {situationDetail: req.body.reply}, function(err, result) {
+    User.findOneAndUpdate(sessionId, {situationDetail: req.body.reply}, function(err, result) {
       console.log(result);
     })
   };
