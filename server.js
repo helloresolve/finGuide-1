@@ -14,7 +14,6 @@ mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_
 // define user schema
 var userSchema = mongoose.Schema({
   sessionId: String,
-  name: String,
   email: String,
   knowWhereToStart: String,
   totalDebt: String,
@@ -22,9 +21,10 @@ var userSchema = mongoose.Schema({
   monthlyDebtPayments: String,
   incomeYN: String,
   incomeAmount: String,
-  incomeConsitency: String,
-  situationDetail: String
-
+  incomeConsistency: String,
+  situationDetail: String,
+  stressLevel: String,
+  email2: String
 });
 
 User = mongoose.model('user', userSchema);
@@ -110,14 +110,23 @@ app.post('/api/pushToDB', (req, res)=> {
     // income consistency
     if (req.body.moduleID === '394088' ) {
       console.log("income consistency", req.body.reply);
-      User.update({incomeConsitency: req.body.reply}, function(err,result){
+      User.update({incomeConsistency: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
-    // situation detail
-    if (req.body.moduleID === '394179' ) {
-      console.log("explain situation", req.body.reply);
+
+    // email 2  
+    if (req.body.moduleID === '386458' ) {
+      console.log("stress level", req.body.reply);
+      User.update({email2: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // situation detail NOT USED
+    if (req.body.moduleID === '386456' ) {
+      console.log("explain situation or questiosn", req.body.reply);
       User.update({situationDetail: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
