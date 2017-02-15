@@ -56,7 +56,7 @@ app.post('/api/pushToDB', (req, res)=> {
     User.findOneAndUpdate(sessionId, {email: req.body.reply}, options, function(err, resultOfFoundRecord) {
       //if session DOES NOT exist, save session and info
       if(!resultOfFoundRecord){
-        User.save(sessionId, {email: req.body.reply}, function(err, resultOfNewRecord) {
+        User.save({sessionId: req.body.session}, {email: req.body.reply}, function(err, resultOfNewRecord) {
           console.log(resultOfNewRecord);
         })
       }
@@ -70,7 +70,7 @@ app.post('/api/pushToDB', (req, res)=> {
     User.findOneAndUpdate(sessionId, {knowWhereToStart: req.body.reply}, options, function(err, resultOfFoundRecord) {
       //if session DOES NOT exist, save session and info
       if(!resultOfFoundRecord){
-        User.save(sessionId, {knowWhereToStart: req.body.reply}, function(err, resultOfNewRecord) {
+        User.save({sessionId: req.body.session}, {knowWhereToStart: req.body.reply}, function(err, resultOfNewRecord) {
           console.log(resultOfNewRecord);
         })
       }
