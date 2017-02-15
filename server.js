@@ -13,16 +13,18 @@ mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_
 
 // define user schema
 var userSchema = mongoose.Schema({
-  sessionId: String//,
-  // email: String,
-  // knowWhereToStart: String,
-  // totalDebt: String,
-  // averageInterestRate: String,
-  // monthlyDebtPayments: String,
-  // incomeYN: String,
-  // incomeAmount: String,
-  // incomeConsistency: String,
-  // situationDetail: String,
+  sessionId: String,
+  email: String,
+  knowWhereToStart: String,
+  totalDebt: String,
+  averageInterestRate: String,
+  monthlyDebtPayments: String,
+  incomeYN: String,
+  incomeAmount: String,
+  incomeConsistency: String,
+  situationDetail: String,
+  stressLevel: String,
+  email2: String
 });
 
 User = mongoose.model('user', userSchema);
@@ -33,50 +35,36 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// redirect an potential user to stub html page
+
 app.use('/', express.static(path.join(__dirname, '/public')));
 
-// API route for webhooks
 app.post('/api/pushToDB', (req, res)=> {
   console.log("trying to add to db...");
 
   // look up session and create if doesn't exist  
-  User.findOne({sessionId: req.body.session}, function(err, session) {
-    console.log("sessionID", session);
+  User.findOne({sessionId: req.body.session}, function(err, user) {
+    console.log("user", user);
+    if (!user) {
+        console.log("not found, creating new session...")
+        User.create({sessionId: req.body.session}, function (err, response) {
 
-    //if session is undefined, create one 
-    if (!session) {
-        console.log("session not found, creating new session...")
-        User.create({ sessionId: req.body.session//,                          
-                      // email: null,
-                      // knowWhereToStart: null,
-                      // totalDebt: null,
-                      // averageInterestRate: null,
-                      // monthlyDebtPayments: null,
-                      // incomeYN: null,
-                      // incomeAmount: null,
-                      // incomeConsistency: null,
-                      // situationDetail: null
-                    }, function (err, response) {
-                      console.log("response from creating user:", response)
+          // email included since needs to only add first response after session created
+          if (req.body.moduleID === '394253' ) {
+            console.log("email provided", req.body.reply);
+            User.update({email: req.body.reply}, function(err,result){
+              if (err) console.log("error", err);
+              console.log("done updating...", result);
+            });
+          };
        })
     } 
-
-
-    // email included since needs to only add first response after session created
-    if (req.body.moduleID === '394253' ) {
-      console.log("email provided", req.body.reply);
-      User.update({email: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
 
 
     // know where to start
     if (req.body.moduleID === '394313' ) {
       console.log("know where to start provided", req.body.reply);
       User.update({knowWhereToStart: req.body.reply}, function(err,result){
-        console.log("done updating...", result);
+        console.log("done updating...");
       });
     };
 
@@ -84,7 +72,7 @@ app.post('/api/pushToDB', (req, res)=> {
     if (req.body.moduleID === '394231' ) {
       console.log("total debt provided", req.body.reply);
       User.update({totalDebt: req.body.reply}, function(err,result){
-        console.log("done updating...", result);
+        console.log("done updating...");
       });
     };
 
@@ -129,8 +117,16 @@ app.post('/api/pushToDB', (req, res)=> {
     };
 
 
-    // situation detail
-    if (req.body.moduleID === '396899' ) {
+    // email 2  
+    if (req.body.moduleID === '386458' ) {
+      console.log("stress level", req.body.reply);
+      User.update({email2: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+    // situation detail NOT USED
+    if (req.body.moduleID === '386456' ) {
       console.log("explain situation or questiosn", req.body.reply);
       User.update({situationDetail: req.body.reply}, function(err,result){
         console.log("done updating...");
@@ -139,7 +135,7 @@ app.post('/api/pushToDB', (req, res)=> {
 
 
 
-  }); // close db entry
+    }); // close db entry
 
   res.send("Saved ish");
 
