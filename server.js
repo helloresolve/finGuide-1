@@ -23,8 +23,6 @@ var userSchema = mongoose.Schema({
   incomeAmount: String,
   incomeConsistency: String,
   situationDetail: String,
-  stressLevel: String,
-  email2: String
 });
 
 User = mongoose.model('user', userSchema);
@@ -50,8 +48,8 @@ app.post('/api/pushToDB', (req, res)=> {
 
           // email included since needs to only add first response after session created
           if (req.body.moduleID === '394253' ) {
-            console.log("email provided", req.body.reply.toString() );
-            User.update({email: req.body.reply.toString() }, function(err,result){
+            console.log("email provided", req.body.reply);
+            User.update({email: req.body.reply}, function(err,result){
               if (err) console.log("error", err);
               console.log("done updating...", result);
             });
@@ -62,85 +60,71 @@ app.post('/api/pushToDB', (req, res)=> {
 
     // know where to start
     if (req.body.moduleID === '394313' ) {
-      console.log("know where to start provided", req.body.reply.toString() );
-      User.update({knowWhereToStart: req.body.reply.toString() }, function(err,result){
+      console.log("know where to start provided", req.body.reply);
+      User.update({knowWhereToStart: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
     // total debt amount
     if (req.body.moduleID === '394231' ) {
-      console.log("total debt provided", req.body.reply.toString() );
-      User.update({totalDebt: req.body.reply.toString() }, function(err,result){
+      console.log("total debt provided", req.body.reply);
+      User.update({totalDebt: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
     // average interest
     if (req.body.moduleID === '394235' ) {
-      console.log("average interest provided", req.body.reply.toString() );
-      User.update({averageInterestRate: req.body.reply.toString() }, function(err,result){
+      console.log("average interest provided", req.body.reply);
+      User.update({averageInterestRate: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
     // monthly debt payments
     if (req.body.moduleID === '394236' ) {
-      console.log("monthly debt payments", req.body.reply.toString() );
-      User.update({monthlyDebtPayments: req.body.reply.toString() }, function(err,result){
+      console.log("monthly debt payments", req.body.reply);
+      User.update({monthlyDebtPayments: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
     // income (y/n)
     if (req.body.moduleID === '394074' ) {
-      console.log("income (yes or no)", req.body.reply.toString() );
-      User.update({incomeYN: req.body.reply.toString() }, function(err,result){
+      console.log("income (yes or no)", req.body.reply);
+      User.update({incomeYN: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
     // income amount
     if (req.body.moduleID === '394076' ) {
-      console.log("income amount", req.body.reply.toString() );
-      User.update({incomeAmount: req.body.reply.toString() }, function(err,result){
+      console.log("income amount", req.body.reply);
+      User.update({incomeAmount: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
     // income consistency
     if (req.body.moduleID === '394088' ) {
-      console.log("income consistency", req.body.reply.toString() );
-      User.update({incomeConsistency: req.body.reply.toString() }, function(err,result){
+      console.log("income consistency", req.body.reply);
+      User.update({incomeConsistency: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
 
-    // stress level
-    if (req.body.moduleID === '386455' ) {
-      console.log("stress level", req.body.reply.toString() );
-      User.update({stressLevel: req.body.reply.toString() }, function(err,result){
-        console.log("done updating...");
-      });
-    };
-
-    // situation detail NOT USED
-    if (req.body.moduleID === '386456' ) {
-      console.log("explain situation or questiosn", req.body.reply.toString() );
-      User.update({situationDetail: req.body.reply.toString() }, function(err,result){
+    // situation detail
+    if (req.body.moduleID === '396899' ) {
+      console.log("explain situation or questiosn", req.body.reply);
+      User.update({situationDetail: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
 
 
-    // situation detail NOT USED
-    if (req.body.moduleID === '386458' ) {
-      console.log("email 2 provided", req.body.reply.toString() );
-      User.update({email2: req.body.reply.toString() }, function(err,result){
-        console.log("done updating...");
-      });
-    };
+
   }); // close db entry
 
   res.send("Saved ish");
