@@ -45,14 +45,12 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.post('/api/pushToDB', (req, res)=> {
   
   let sessionId = {sessionId: req.body.session};
-  let options = { upsert: true };
-
-
+  //let options = { upsert: true };
 
 
   // email provided
   if (req.body.moduleID === '394253' ) {
-    User.findOneAndUpdate(sessionId, {email: req.body.reply}, options, function(err, result) {
+    User.findOneAndUpdate(sessionId, {email: req.body.reply}, function(err, result) {
       console.log(result)
     })
   };
@@ -60,7 +58,7 @@ app.post('/api/pushToDB', (req, res)=> {
 
   // know where to start
   if (req.body.moduleID === '394313' ) {
-    User.findOneAndUpdate(sessionId, {knowWhereToStart: req.body.reply}, options, function(err, result) {
+    User.findOneAndUpdate(sessionId, {knowWhereToStart: req.body.reply}, function(err, result) {
      console.log(result)
     })
   };
