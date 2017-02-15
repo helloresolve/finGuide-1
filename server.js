@@ -117,10 +117,10 @@ app.post('/api/pushToDB', (req, res)=> {
     };
 
 
-    // email 2  
-    if (req.body.moduleID === '386458' ) {
+    // stress level
+    if (req.body.moduleID === '386455' ) {
       console.log("stress level", req.body.reply);
-      User.update({email2: req.body.reply}, function(err,result){
+      User.update({stressLevel: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -129,6 +129,15 @@ app.post('/api/pushToDB', (req, res)=> {
     if (req.body.moduleID === '386456' ) {
       console.log("explain situation or questiosn", req.body.reply);
       User.update({situationDetail: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
+
+
+    // situation detail NOT USED
+    if (req.body.moduleID === '386458' ) {
+      console.log("email 2 provided", req.body.reply);
+      User.update({email2: req.body.reply}, function(err,result){
         console.log("done updating...");
       });
     };
