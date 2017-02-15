@@ -8,8 +8,8 @@ app.use(morgan('dev'));
 let port = process.env.PORT || 3000;
 
 // import files
-let User = require('./model.js');
-let routes = require ('./routes.js')
+let User = require('./database/model.js');
+let routes = require ('./database/routes.js')
 
 // parse requests
 app.use(bodyParser.json());
