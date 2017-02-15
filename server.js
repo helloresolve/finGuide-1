@@ -132,10 +132,7 @@ app.post('/api/pushToDB', (req, res)=> {
         console.log("done updating...");
       });
     };
-
-
-
-    }); // close db entry
+  }); // close db entry
 
   res.send("Saved ish");
 
