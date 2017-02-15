@@ -51,7 +51,7 @@ app.post('/api/pushToDB', (req, res)=> {
           // email included since needs to only add first response after session created
           if (req.body.moduleID === '394253' ) {
             console.log("email provided", JSON.stringify(req.body.reply));
-            User.update({email: JSON.stringify(req.body.reply))}, function(err,result){
+            User.update({email: JSON.stringify(req.body.reply)}, function(err,result){
               if (err) console.log("error", err);
               console.log("done updating...", result);
             });
@@ -63,7 +63,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // know where to start
     if (req.body.moduleID === '394313' ) {
       console.log("know where to start provided", JSON.stringify(req.body.reply));
-      User.update({knowWhereToStart: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({knowWhereToStart: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -71,7 +71,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // total debt amount
     if (req.body.moduleID === '394231' ) {
       console.log("total debt provided", JSON.stringify(req.body.reply));
-      User.update({totalDebt: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({totalDebt: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -79,7 +79,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // average interest
     if (req.body.moduleID === '394235' ) {
       console.log("average interest provided", JSON.stringify(req.body.reply));
-      User.update({averageInterestRate: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({averageInterestRate: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -87,7 +87,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // monthly debt payments
     if (req.body.moduleID === '394236' ) {
       console.log("monthly debt payments", JSON.stringify(req.body.reply));
-      User.update({monthlyDebtPayments: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({monthlyDebtPayments: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -95,7 +95,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // income (y/n)
     if (req.body.moduleID === '394074' ) {
       console.log("income (yes or no)", JSON.stringify(req.body.reply));
-      User.update({incomeYN: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({incomeYN: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -103,7 +103,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // income amount
     if (req.body.moduleID === '394076' ) {
       console.log("income amount", JSON.stringify(req.body.reply));
-      User.update({incomeAmount: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({incomeAmount: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -111,7 +111,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // income consistency
     if (req.body.moduleID === '394088' ) {
       console.log("income consistency", JSON.stringify(req.body.reply));
-      User.update({incomeConsistency: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({incomeConsistency: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -120,7 +120,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // stress level
     if (req.body.moduleID === '386455' ) {
       console.log("stress level", JSON.stringify(req.body.reply));
-      User.update({stressLevel: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({stressLevel: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -128,7 +128,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // situation detail NOT USED
     if (req.body.moduleID === '386456' ) {
       console.log("explain situation or questiosn", JSON.stringify(req.body.reply));
-      User.update({situationDetail: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({situationDetail: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
@@ -137,7 +137,7 @@ app.post('/api/pushToDB', (req, res)=> {
     // situation detail NOT USED
     if (req.body.moduleID === '386458' ) {
       console.log("email 2 provided", JSON.stringify(req.body.reply));
-      User.update({email2: JSON.stringify(req.body.reply))}, function(err,result){
+      User.update({email2: JSON.stringify(req.body.reply)}, function(err,result){
         console.log("done updating...");
       });
     };
