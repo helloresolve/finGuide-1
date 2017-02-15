@@ -7,6 +7,7 @@
     "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "mongoose": "^4.8.2",
+    "mongoose-find-one-or-create": "^0.2.0",
     "morgan": "^1.8.1",
     "path": "^0.12.7"
   },
