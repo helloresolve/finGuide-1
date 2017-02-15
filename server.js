@@ -41,10 +41,12 @@ app.post('/api/pushToDB', (req, res)=> {
   console.log("trying to add to db...");
 
   // look up session and create if doesn't exist  
-  User.findOne({sessionId: req.body.session}, function(err, user) {
-    console.log("user", user);
-    if (!user) {
-        console.log("not found, creating new session...")
+  User.findOne({sessionId: req.body.session}, function(err, session) {
+    console.log("sessionID", session);
+
+    //if session is undefined, create one 
+    if (!session) {
+        console.log("session not found, creating new session...")
         User.create({ sessionId: req.body.session//,                          
                       // email: null,
                       // knowWhereToStart: null,
@@ -74,7 +76,7 @@ app.post('/api/pushToDB', (req, res)=> {
     if (req.body.moduleID === '394313' ) {
       console.log("know where to start provided", req.body.reply);
       User.update({knowWhereToStart: req.body.reply}, function(err,result){
-        console.log("done updating...");
+        console.log("done updating...", result);
       });
     };
 
@@ -82,7 +84,7 @@ app.post('/api/pushToDB', (req, res)=> {
     if (req.body.moduleID === '394231' ) {
       console.log("total debt provided", req.body.reply);
       User.update({totalDebt: req.body.reply}, function(err,result){
-        console.log("done updating...");
+        console.log("done updating...", result);
       });
     };
 
