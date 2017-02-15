@@ -2,7 +2,7 @@
   "name": "finGuide",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server/server.js",
   "dependencies": {
     "body-parser": "^1.16.1",
     "express": "^4.14.1",
