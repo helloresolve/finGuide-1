@@ -13,16 +13,16 @@ mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_
 
 // define user schema
 var userSchema = mongoose.Schema({
-  sessionId: String,
-  email: String,
-  knowWhereToStart: String,
-  totalDebt: String,
-  averageInterestRate: String,
-  monthlyDebtPayments: String,
-  incomeYN: String,
-  incomeAmount: String,
-  incomeConsistency: String,
-  situationDetail: String,
+  sessionId: String//,
+  // email: String,
+  // knowWhereToStart: String,
+  // totalDebt: String,
+  // averageInterestRate: String,
+  // monthlyDebtPayments: String,
+  // incomeYN: String,
+  // incomeAmount: String,
+  // incomeConsistency: String,
+  // situationDetail: String,
 });
 
 User = mongoose.model('user', userSchema);
@@ -33,9 +33,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
+// redirect an potential user to stub html page
 app.use('/', express.static(path.join(__dirname, '/public')));
 
+// API route for webhooks
 app.post('/api/pushToDB', (req, res)=> {
   console.log("trying to add to db...");
 
@@ -55,17 +56,18 @@ app.post('/api/pushToDB', (req, res)=> {
                       // incomeConsistency: null,
                       // situationDetail: null
                     }, function (err, response) {
-
-          // email included since needs to only add first response after session created
-          if (req.body.moduleID === '394253' ) {
-            console.log("email provided", req.body.reply);
-            User.update({email: req.body.reply}, function(err,result){
-              if (err) console.log("error", err);
-              console.log("done updating...", result);
-            });
-          };
+                      console.log("response from creating user:", response)
        })
     } 
+
+
+    // email included since needs to only add first response after session created
+    if (req.body.moduleID === '394253' ) {
+      console.log("email provided", req.body.reply);
+      User.update({email: req.body.reply}, function(err,result){
+        console.log("done updating...");
+      });
+    };
 
 
     // know where to start
