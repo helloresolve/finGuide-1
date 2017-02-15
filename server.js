@@ -23,8 +23,6 @@ var userSchema = mongoose.Schema({
   incomeAmount: String,
   incomeConsistency: String,
   situationDetail: String,
-  stressLevel: String,
-  email2: String
 });
 
 User = mongoose.model('user', userSchema);
@@ -39,107 +37,83 @@ app.use(bodyParser.urlencoded({
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.post('/api/pushToDB', (req, res)=> {
-  console.log("trying to add to db...");
-
-  // look up session and create if doesn't exist  
-  User.findOne({sessionId: req.body.session}, function(err, user) {
-    console.log("user", user);
-    if (!user) {
-        console.log("not found, creating new session...")
-        User.create({sessionId: req.body.session}, function (err, response) {
-
-          // email included since needs to only add first response after session created
-          if (req.body.moduleID === '394253' ) {
-            console.log("email provided", req.body.reply);
-            User.update({email: req.body.reply}, function(err,result){
-              if (err) console.log("error", err);
-              console.log("done updating...", result);
-            });
-          };
-       })
-    } 
 
 
-    // know where to start
-    if (req.body.moduleID === '394313' ) {
-      console.log("know where to start provided", req.body.reply);
-      User.update({knowWhereToStart: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
-
-    // total debt amount
-    if (req.body.moduleID === '394231' ) {
-      console.log("total debt provided", req.body.reply);
-      User.update({totalDebt: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
-
-    // average interest
-    if (req.body.moduleID === '394235' ) {
-      console.log("average interest provided", req.body.reply);
-      User.update({averageInterestRate: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
-
-    // monthly debt payments
-    if (req.body.moduleID === '394236' ) {
-      console.log("monthly debt payments", req.body.reply);
-      User.update({monthlyDebtPayments: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
-
-    // income (y/n)
-    if (req.body.moduleID === '394074' ) {
-      console.log("income (yes or no)", req.body.reply);
-      User.update({incomeYN: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
-
-    // income amount
-    if (req.body.moduleID === '394076' ) {
-      console.log("income amount", req.body.reply);
-      User.update({incomeAmount: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
-
-    // income consistency
-    if (req.body.moduleID === '394088' ) {
-      console.log("income consistency", req.body.reply);
-      User.update({incomeConsistency: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
+  // email provided
+  if (req.body.moduleID === '394253' ) {
+    console.log("email provided", req.body.reply);
+    User.findOneOrCreate({sessionId: req.body.session}, {email: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
 
 
-    // email 2  
-    if (req.body.moduleID === '386458' ) {
-      console.log("stress level", req.body.reply);
-      User.update({email2: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
+  // know where to start
+  if (req.body.moduleID === '394313' ) {
+    console.log("know where to start provided", req.body.reply);
+    User.findOneOrCreate({sessionId: req.body.session}, {knowWhereToStart: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
 
-    // situation detail NOT USED
-    if (req.body.moduleID === '386456' ) {
-      console.log("explain situation or questiosn", req.body.reply);
-      User.update({situationDetail: req.body.reply}, function(err,result){
-        console.log("done updating...");
-      });
-    };
+  // total debt amount
+  if (req.body.moduleID === '394231' ) {
+    console.log("total debt provided", req.body.reply);
+    User.findOneOrCreate({sessionId: req.body.session}, {totalDebt: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
 
+  // average interest
+  if (req.body.moduleID === '394235' ) {
+    console.log("average interest provided", req.body.reply);
+    User.findOneOrCreate({sessionId: req.body.session}, {averageInterestRate: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
 
+  // monthly debt payments
+  if (req.body.moduleID === '394236' ) {
+    console.log("monthly debt payments", req.body.reply);
+    User.findOneOrCreate({sessionId: req.body.session}, {monthlyDebtPayments: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
 
-    }); // close db entry
+  // income (y/n)
+  if (req.body.moduleID === '394074' ) {
+    console.log("income (yes or no)", req.body.reply);
+      User.findOneOrCreate({sessionId: req.body.session}, {incomeYN: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
+
+  // income amount
+  if (req.body.moduleID === '394076' ) {
+    console.log("income amount", req.body.reply);
+    User.findOneOrCreate({sessionId: req.body.session}, {incomeAmount: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
+
+  // income consistency
+  if (req.body.moduleID === '394088' ) {
+    User.findOneOrCreate({sessionId: req.body.session}, {incomeConsistency: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
+
+  // situation detail
+  if (req.body.moduleID === '396899' ) {
+    User.findOneOrCreate({sessionId: req.body.session}, {situationDetail: req.body.reply}, function(err, result) {
+      console.log(result);
+    })
+  };
 
   res.send("Saved ish");
 
-})
+}); // close db entry
+
 // start server
 app.listen(port);
 console.log('Listening on port ' + port + '...');
