@@ -44,7 +44,17 @@ app.post('/api/pushToDB', (req, res)=> {
     console.log("user", user);
     if (!user) {
         console.log("not found, creating new session...")
-        User.create({sessionId: req.body.session}, function (err, response) {
+        User.create({ sessionId: req.body.session,                          
+                      email: null,
+                      knowWhereToStart: null,
+                      totalDebt: null,
+                      averageInterestRate: null,
+                      monthlyDebtPayments: null,
+                      incomeYN: null,
+                      incomeAmount: null,
+                      incomeConsistency: null,
+                      situationDetail: null
+                    }, function (err, response) {
 
           // email included since needs to only add first response after session created
           if (req.body.moduleID === '394253' ) {
