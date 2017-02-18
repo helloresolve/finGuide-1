@@ -79,7 +79,7 @@ module.exports = {
     };
 
     // behind on payments  
-    if (req.body.moduleID === '402781' ) {
+    if (req.body.moduleID === '408193' ) {
       Tables.crnBotv2.findOneAndUpdate(sessionId, {behindOnPayments: req.body.reply}, options, (err, result) => { console.log(result); })
     };
 
