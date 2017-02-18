@@ -73,7 +73,12 @@ var crnBotv2Schema = mongoose.Schema({
   daysPastDue: {
     type: String,
     default: null
-  }
+  },
+  firstName: {
+    type: String,
+    default: null
+  },
+
 });
 
 /************************** 
@@ -81,10 +86,10 @@ var crnBotv2Schema = mongoose.Schema({
  * ***********************/
 
 var userSchema = mongoose.Schema({
-  // created: {
-  //   type: Date,
-  //   default: Date.now
-  // },
+  created: {
+    type: Date,
+    default: Date.now
+  },
   sessionId: {
     type: String,
     default: null

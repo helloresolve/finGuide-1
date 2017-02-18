@@ -14,8 +14,9 @@ module.exports = {
      * These are routes for chatbot v2  *
      * *********************************/
 
+
     // email provided
-    if (req.body.moduleID ==='402733' ) {
+    if (req.body.moduleID ==='402680' ) {
       Tables.CrnBotv2.findOneAndUpdate(sessionId, {email: req.body.reply}, options, (err, result) => { console.log(result)})
     };
 
@@ -85,6 +86,11 @@ module.exports = {
     // days past due on payments  
     if (req.body.moduleID === '402782' ) {
       Tables.crnBotv2.findOneAndUpdate(sessionId, {daysPastDue: req.body.reply}, options, (err, result) => { console.log(result); })
+    };
+
+    // firstName provided
+    if (req.body.moduleID ==='402733' ) {
+      Tables.CrnBotv2.findOneAndUpdate(sessionId, {firstName: req.body.reply}, options, (err, result) => { console.log(result)})
     };
 
 
