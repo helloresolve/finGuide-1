@@ -77,7 +77,7 @@ var crnBotv2Schema = mongoose.Schema({
   firstName: {
     type: String,
     default: null
-  },
+  }
 
 });
 

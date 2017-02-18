@@ -21,7 +21,7 @@ module.exports = {
     };
 
     // know where to start
-    if (req.body.moduleID === '402680' ) {
+    if (req.body.moduleID === '402681' ) {
       Tables.CrnBotv2.findOneAndUpdate(sessionId, {knowWhereToStart: req.body.reply}, options, (err, result) => { console.log(result)})
     };
 
@@ -81,18 +81,19 @@ module.exports = {
 
     // behind on payments  
     if (req.body.moduleID === '408193' ) {
-      console.log("behind on payments triggered")
+      console.log("behind on payments triggered. Reply looks like:", req.body.reply)
       Tables.crnBotv2.findOneAndUpdate(sessionId, {behindOnPayments: req.body.reply}, options, (err, result) => { console.log(result); })
     };
 
     // days past due on payments  
     if (req.body.moduleID === '402782' ) {
-      console.log("days past due triggered")
+      console.log("days past due triggered. Reply looks like:", req.body.reply))
       Tables.crnBotv2.findOneAndUpdate(sessionId, {daysPastDue: req.body.reply}, options, (err, result) => { console.log(result); })
     };
 
     // firstName provided
     if (req.body.moduleID ==='402733' ) {
+       console.log("first name triggered. Reply looks like:", req.body.reply))
       Tables.CrnBotv2.findOneAndUpdate(sessionId, {firstName: req.body.reply}, options, (err, result) => { console.log(result)})
     };
 
