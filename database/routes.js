@@ -37,6 +37,7 @@ module.exports = {
 
     // monthly debt payments
     if (req.body.moduleID === '402679' ) {
+      console.log("monthly debt triggered...")
       Tables.CrnBotv2.findOneAndUpdate(sessionId, {monthlyDebtPayments: req.body.reply}, options, (err, result) => { console.log(result); })
     };
 
