@@ -10,6 +10,10 @@ mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_
 
 // new table schema
 var crnBotv2Schema = mongoose.Schema({
+  created: {
+    type: Date,
+    default: Date.now
+  },
   sessionId: {
     type: String,
     default: null
@@ -77,6 +81,10 @@ var crnBotv2Schema = mongoose.Schema({
  * ***********************/
 
 var userSchema = mongoose.Schema({
+  // created: {
+  //   type: Date,
+  //   default: Date.now
+  // },
   sessionId: {
     type: String,
     default: null
