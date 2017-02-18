@@ -76,7 +76,7 @@ var crnBotv2Schema = mongoose.Schema({
  * Schema for chatbot v1  *
  * ***********************/
 
-var User = mongoose.Schema({
+var userSchema = mongoose.Schema({
   sessionId: {
     type: String,
     default: null
@@ -120,11 +120,9 @@ var User = mongoose.Schema({
 });
 
 
-
-crnBotv2 = mongoose.model('crnBotv2', crnBotv2Schema);
-
-User = mongoose.model('crnBotv2', userSchema);
+User = mongoose.model('user', userSchema);
+CrnBotv2 = mongoose.model('crnBotv2', crnBotv2Schema);
 
 
-module.exports = crnBotv2; // new table
-module.exports = User; // old table
+module.exports.User = User;
+module.exports.CrnBotv2 = CrnBotv2;
