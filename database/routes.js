@@ -87,7 +87,7 @@ module.exports = {
 
     // days past due on payments  
     if (req.body.moduleID === '402782' ) {
-      console.log("days past due triggered. Reply looks like:", req.body.reply))
+      console.log("days past due triggered. Reply looks like:", req.body.reply)
       Tables.crnBotv2.findOneAndUpdate(sessionId, {daysPastDue: req.body.reply}, options, (err, result) => { console.log(result); })
     };
 
