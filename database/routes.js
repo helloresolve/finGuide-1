@@ -80,11 +80,13 @@ module.exports = {
 
     // behind on payments  
     if (req.body.moduleID === '408193' ) {
+      console.log("behind on payments triggered")
       Tables.crnBotv2.findOneAndUpdate(sessionId, {behindOnPayments: req.body.reply}, options, (err, result) => { console.log(result); })
     };
 
     // days past due on payments  
     if (req.body.moduleID === '402782' ) {
+      console.log("days past due triggered")
       Tables.crnBotv2.findOneAndUpdate(sessionId, {daysPastDue: req.body.reply}, options, (err, result) => { console.log(result); })
     };
 
