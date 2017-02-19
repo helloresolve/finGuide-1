@@ -1,3 +1,5 @@
+'use strict';
+
 let mongoose = require('mongoose');
 
 mongoose.connect('mongodb://finGuide:Finguide123@ds157667.mlab.com:57667/heroku_326pqxss');
@@ -133,8 +135,8 @@ var userSchema = mongoose.Schema({
 });
 
 
-User = mongoose.model('user', userSchema);
-CrnBotv2 = mongoose.model('crnBotv2', crnBotv2Schema);
+const User = mongoose.model('user', userSchema);
+const CrnBotv2 = mongoose.model('crnBotv2', crnBotv2Schema);
 
 
 module.exports.User = User;
